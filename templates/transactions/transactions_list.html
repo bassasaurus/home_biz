@@ -2,12 +2,16 @@
 
 {% block content %}
 <h1>Transactions List</h1>
+<a href="{% url 'transactions_create' %}">New Transaction</a><br>
 {% for object in object_list %}
 
-  <a href="{% url 'transactions_detail' object.pk %}">{{ object }}</a><br>
-  <a href="{% url 'transactions_create' %}">Create</a><br>
-  <a href="{% url 'transactions_update' object.pk %}">Update {{ object }}</a><br>
-  <a href="{% url 'transactions_delete' object.pk %}"> Delete {{ object }}</a><br>
+
+
+  <p>
+  <a href="{% url 'transactions_detail' object.pk %}">{{ object }}</a>
+  <a href="{% url 'transactions_update' object.pk %}">Update</a>
+  <a href="{% url 'transactions_delete' object.pk %}"> Delete</a>
+  </p>
 
 {% endfor %}
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from djmoney.models.fields import MoneyField
+from django.urls import reverse
 
 
 # https://github.com/django-money/django-money
@@ -92,10 +93,13 @@ class Transactions(models.Model):
         BusinessGroups, models.SET_NULL, null=True)
     comments = models.CharField(max_length=500, default='', blank=True)
 
+    def get_absolute_url(self): # new
+        return reverse('transactions_list', )
+
     def __str__(self):
         created_by = str(self.created_by)
         updated_by = str(self.updated_by)
         amount = str(self.amount)
         created_timestamp = str(self.created_timestamp.strftime('%D%M %H:%M'))
         updated_timestamp = str(self.updated_timestamp.strftime('%D%M %H:%M'))
-        return str(self.name + ' - ' + amount + ' | ' + 'created by: ' + created_by + ' at: ' + created_timestamp + ' | ' + 'updated_by: ' + updated_by + ' at: ' + updated_timestamp)
+        return str(self.name + ' - ' + amount + ' | ' + 'created by: ' + created_by)
