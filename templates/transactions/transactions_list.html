@@ -2,4 +2,7 @@
 
 {% block content %}
 <p>Transactions List</p>
+{% for object in object_list %}
+  <a href="{% url 'object' pk %}">{{ object }}</a>
+{% endfor %}
 {% endblock %}
