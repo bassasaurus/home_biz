@@ -2,6 +2,7 @@
 from django.views.generic import TemplateView
 from authentication.views import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
+from transactions.models import Transactions
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -9,20 +10,25 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
 
 class TransactionsListView(ListView):
-    template_name = 'transactions_list.html'
+    model = Transactions
+    template_name = 'transactions/transactions_list.html'
 
 
 class TransactionsCreateView(CreateView):
-    template_name = 'transactions_create.html'
+    model = Transactions
+    template_name = 'transactions/transactions_create.html'
 
 
 class TransactionsDetailView(DetailView):
-    template_name = 'transactions_detail.html'
+    model = Transactions
+    template_name = 'transactions/transactions_detail.html'
 
 
 class TransactionsUpdateView(DetailView):
-    template_name = 'transactions_update.html'
+    model = Transactions
+    template_name = 'transactions/transactions_update.html'
 
 
 class TransactionsDeleteView(DeleteView):
-    template_name = 'transactions_delete.html'
+    model = Transactions
+    template_name = 'transactions/transactions_delete.html'

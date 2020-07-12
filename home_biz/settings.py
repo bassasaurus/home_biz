@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'profiles',
     'transactions',
 
-    'djmoney'
+    'djmoney',
 ]
 
 MIDDLEWARE = [

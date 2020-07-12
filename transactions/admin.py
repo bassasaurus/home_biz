@@ -5,7 +5,7 @@ from transactions.models import Transactions, Categories, BusinessGroups, Accoun
 
 class TransactionsAdmin(admin.ModelAdmin):
 
-    readonly_fields = ('created_by', 'created_timestamp',
+    readonly_fields = ('pk', 'created_by', 'created_timestamp',
                        'updated_by', 'updated_timestamp')
 
     def save_model(self, request, obj, form, change):
