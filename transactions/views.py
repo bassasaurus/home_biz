@@ -20,6 +20,10 @@ class TransactionsCreateView(CreateView):
     fields = ['name', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
     template_name = 'transactions/transactions_create.html'
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super(TransactionsCreateView, self).form_valid(form)
+
 
 class TransactionsDetailView(DetailView):
     model = Transactions
@@ -30,6 +34,10 @@ class TransactionsUpdateView(UpdateView):
     model = Transactions
     fields = ['name', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
     template_name = 'transactions/transactions_update.html'
+
+    def form_valid(self, form):
+        form.instance.updated_by = self.request.user
+        return super(TransactionsUpdateView, self).form_valid(form)
 
 
 class TransactionsDeleteView(DeleteView):
