@@ -2,7 +2,7 @@
 from django.views.generic import TemplateView
 from authentication.views import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
-from BusinessGroups.models import Transactions, BusinessGroups, Accounts
+from transactions.models import Transactions, BusinessGroups, Accounts
 from django.urls import reverse_lazy
 
 
