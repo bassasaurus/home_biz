@@ -9,12 +9,16 @@ class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'common/home.html'
 
 
-class TransactionsListView(ListView):
+class IndexView(TemplateView):
+    template_name = 'common/index.html'
+
+
+class TransactionsListView(LoginRequiredMixin, ListView):
     model = Transactions
     template_name = 'transactions/transactions_list.html'
 
 
-class TransactionsCreateView(CreateView):
+class TransactionsCreateView(LoginRequiredMixin, CreateView):
     model = Transactions
     fields = ['name', 'date', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
     template_name = 'transactions/transactions_create.html'
@@ -24,12 +28,12 @@ class TransactionsCreateView(CreateView):
         return super(TransactionsCreateView, self).form_valid(form)
 
 
-class TransactionsDetailView(DetailView):
+class TransactionsDetailView(LoginRequiredMixin, DetailView):
     model = Transactions
     template_name = 'transactions/transactions_detail.html'
 
 
-class TransactionsUpdateView(UpdateView):
+class TransactionsUpdateView(LoginRequiredMixin, UpdateView):
     model = Transactions
     fields = ['name', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
     template_name = 'transactions/transactions_update.html'
@@ -39,18 +43,18 @@ class TransactionsUpdateView(UpdateView):
         return super(TransactionsUpdateView, self).form_valid(form)
 
 
-class TransactionsDeleteView(DeleteView):
+class TransactionsDeleteView(LoginRequiredMixin, DeleteView):
     model = Transactions
     template_name = 'transactions/transactions_delete.html'
     success_url = reverse_lazy('transactions_list')
 
 
-class BusinessGroupsListView(ListView):
+class BusinessGroupsListView(LoginRequiredMixin, ListView):
     model = BusinessGroups
     template_name = 'business_groups/business_groups_list.html'
 
 
-class BusinessGroupsCreateView(CreateView):
+class BusinessGroupsCreateView(LoginRequiredMixin, CreateView):
     model = BusinessGroups
     fields = ['name', ]
     template_name = 'business_groups/business_groups_create.html'
@@ -60,12 +64,12 @@ class BusinessGroupsCreateView(CreateView):
         return super(BusinessGroupsCreateView, self).form_valid(form)
 
 
-class BusinessGroupsDetailView(DetailView):
+class BusinessGroupsDetailView(LoginRequiredMixin, DetailView):
     model = BusinessGroups
     template_name = 'business_groups/business_groups_detail.html'
 
 
-class BusinessGroupsUpdateView(UpdateView):
+class BusinessGroupsUpdateView(LoginRequiredMixin, UpdateView):
     model = BusinessGroups
     fields = ['name', ]
     template_name = 'business_groups/business_groups_update.html'
@@ -75,7 +79,43 @@ class BusinessGroupsUpdateView(UpdateView):
         return super(BusinessGroupsUpdateView, self).form_valid(form)
 
 
-class BusinessGroupsDeleteView(DeleteView):
+class BusinessGroupsDeleteView(LoginRequiredMixin, DeleteView):
     model = BusinessGroups
     template_name = 'business_groups/business_groups_delete.html'
     success_url = reverse_lazy('business_groups_list')
+
+
+class AccountsListView(LoginRequiredMixin, ListView):
+    model = Accounts
+    template_name = 'accounts/accounts_list.html'
+
+
+class AccountsCreateView(LoginRequiredMixin, CreateView):
+    model = Accounts
+    fields = ['name', ]
+    template_name = 'accounts/accounts_create.html'
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super(AccountsCreateView, self).form_valid(form)
+
+
+class AccountsDetailView(LoginRequiredMixin, DetailView):
+    model = Accounts
+    template_name = 'accounts/accounts_detail.html'
+
+
+class AccountsUpdateView(LoginRequiredMixin, UpdateView):
+    model = Accounts
+    fields = ['name', ]
+    template_name = 'accounts/accounts_update.html'
+
+    def form_valid(self, form):
+        form.instance.updated_by = self.request.user
+        return super(AccountsUpdateView, self).form_valid(form)
+
+
+class AccountsDeleteView(LoginRequiredMixin, DeleteView):
+    model = Accounts
+    template_name = 'accounts/accounts_delete.html'
+    success_url = reverse_lazy('accounts_list')

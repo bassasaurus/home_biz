@@ -6,7 +6,7 @@ record number - {{ object.pk }}</p>
 <p>Created by: {{ object.created_by }} at {{ object.created_timestamp }}
 <p>Updated by: {{ object.updated_by }} at {{ object.updated_timestamp }}
 <p>
-  <a href="{% url 'transactions_update' object.pk %}">Update</a>
-  <a href="{% url 'transactions_delete' object.pk %}">Delete</a>
+  <a href="{% url 'accounts_update' object.pk %}">Update</a>
+  <a href="{% url 'accounts_delete' object.pk %}">Delete</a>
 </p>
 {% endblock %}

@@ -1,16 +1,14 @@
 {% extends 'common/base.html' %}
 
 {% block content %}
-<h1>Transactions List</h1>
-<a href="{% url 'transactions_create' %}">New Transaction</a><br>
+<h1>Business List</h1>
+<a href="{% url 'business_create' %}">New Business Group</a><br>
 {% for object in object_list %}
 
-
-
   <p>
-  <a href="{% url 'transactions_detail' object.pk %}">{{ object }}</a>
-  <a href="{% url 'transactions_update' object.pk %}">Update</a>
-  <a href="{% url 'transactions_delete' object.pk %}"> Delete</a>
+  <a href="{% url 'business_detail' object.pk %}">{{ object }}</a>
+  <a href="{% url 'business_update' object.pk %}">Update</a>
+  <a href="{% url 'business_delete' object.pk %}"> Delete</a>
   </p>
 
 {% endfor %}

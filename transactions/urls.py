@@ -1,13 +1,15 @@
 from django.urls import path
 from transactions.views import (
-            HomeView, TransactionsListView, TransactionsCreateView,
+            IndexView, HomeView, TransactionsListView, TransactionsCreateView,
             TransactionsDeleteView, TransactionsDetailView, TransactionsUpdateView,
             BusinessGroupsListView, BusinessGroupsCreateView, BusinessGroupsDeleteView,
-            BusinessGroupsDetailView, BusinessGroupsUpdateView,
+            BusinessGroupsDetailView, BusinessGroupsUpdateView, AccountsListView, AccountsCreateView,
+            AccountsUpdateView, AccountsDetailView, AccountsDeleteView
             )
 
 urlpatterns = [
 
+    path('', IndexView.as_view(), name='index'),
     path('home/', HomeView.as_view(), name='home'),
 
     path('transactions/list/', TransactionsListView.as_view(), name='transactions_list'),
@@ -21,5 +23,11 @@ urlpatterns = [
     path('business/detail/<pk>', BusinessGroupsDetailView.as_view(), name='business_detail'),
     path('business/update/<pk>', BusinessGroupsUpdateView.as_view(), name='business_update'),
     path('business/delete/<pk>', BusinessGroupsDeleteView.as_view(), name='business_delete'),
+
+    path('accounts/list/', AccountsListView.as_view(), name='accounts_list'),
+    path('accounts/create/', AccountsCreateView.as_view(), name='accounts_create'),
+    path('accounts/detail/<pk>', AccountsDetailView.as_view(), name='accounts_detail'),
+    path('accounts/update/<pk>', AccountsUpdateView.as_view(), name='accounts_update'),
+    path('accounts/delete/<pk>', AccountsDeleteView.as_view(), name='accounts_delete'),
 
 ]
