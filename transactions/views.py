@@ -52,7 +52,7 @@ class BusinessGroupsListView(ListView):
 
 class BusinessGroupsCreateView(CreateView):
     model = BusinessGroups
-    fields = ['name', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
+    fields = ['name', ]
     template_name = 'business_groups/business_groups_create.html'
 
     def form_valid(self, form):
@@ -67,7 +67,7 @@ class BusinessGroupsDetailView(DetailView):
 
 class BusinessGroupsUpdateView(UpdateView):
     model = BusinessGroups
-    fields = ['name', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
+    fields = ['name', ]
     template_name = 'business_groups/business_groups_update.html'
 
     def form_valid(self, form):

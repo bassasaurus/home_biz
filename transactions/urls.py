@@ -9,16 +9,17 @@ from transactions.views import (
 urlpatterns = [
 
     path('home/', HomeView.as_view(), name='home'),
-    path('list/', TransactionsListView.as_view(), name='transactions_list'),
-    path('create/', TransactionsCreateView.as_view(), name='transactions_create'),
-    path('detail/<pk>', TransactionsDetailView.as_view(), name='transactions_detail'),
-    path('update/<pk>', TransactionsUpdateView.as_view(), name='transactions_update'),
-    path('delete/<pk>', TransactionsDeleteView.as_view(), name='transactions_delete'),
 
-    path('business/list/', BusinessGroupsListView.as_view(), name='transactions_list'),
-    path('business/create/', BusinessGroupsCreateView.as_view(), name='transactions_create'),
-    path('business/detail/<pk>', BusinessGroupsDetailView.as_view(), name='transactions_detail'),
-    path('business/update/<pk>', BusinessGroupsUpdateView.as_view(), name='transactions_update'),
-    path('business/delete/<pk>', BusinessGroupsDeleteView.as_view(), name='transactions_delete'),
+    path('transactions/list/', TransactionsListView.as_view(), name='transactions_list'),
+    path('transactions/create/', TransactionsCreateView.as_view(), name='transactions_create'),
+    path('tranactions/detail/<pk>', TransactionsDetailView.as_view(), name='transactions_detail'),
+    path('transactions/update/<pk>', TransactionsUpdateView.as_view(), name='transactions_update'),
+    path('trandactions/delete/<pk>', TransactionsDeleteView.as_view(), name='transactions_delete'),
+
+    path('business/list/', BusinessGroupsListView.as_view(), name='business_list'),
+    path('business/create/', BusinessGroupsCreateView.as_view(), name='business_create'),
+    path('business/detail/<pk>', BusinessGroupsDetailView.as_view(), name='business_detail'),
+    path('business/update/<pk>', BusinessGroupsUpdateView.as_view(), name='business_update'),
+    path('business/delete/<pk>', BusinessGroupsDeleteView.as_view(), name='business_delete'),
 
 ]
