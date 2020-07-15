@@ -85,6 +85,7 @@ class Transactions(models.Model):
     updated_timestamp = models.DateTimeField(auto_now=True)
 
     name = models.CharField(max_length=200)
+    date = models.DateField()
     amount = MoneyField(max_digits=14, decimal_places=2,
                         default_currency='USD', default=0.00)
     accounts = models.ForeignKey(Accounts, models.SET_NULL, null=True)

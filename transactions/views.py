@@ -1,4 +1,3 @@
-
 from django.views.generic import TemplateView
 from authentication.views import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
@@ -17,7 +16,7 @@ class TransactionsListView(ListView):
 
 class TransactionsCreateView(CreateView):
     model = Transactions
-    fields = ['name', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
+    fields = ['name', 'date', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
     template_name = 'transactions/transactions_create.html'
 
     def form_valid(self, form):
@@ -44,7 +43,6 @@ class TransactionsDeleteView(DeleteView):
     model = Transactions
     template_name = 'transactions/transactions_delete.html'
     success_url = reverse_lazy('transactions_list')
-
 
 
 class BusinessGroupsListView(ListView):

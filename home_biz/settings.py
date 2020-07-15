@@ -62,6 +62,11 @@ ROOT_URLCONF = 'home_biz.urls'
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
+
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 
@@ -116,6 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
+DATE_FORMAT = "d-m-Y"
 
 LANGUAGE_CODE = 'en-us'
 

@@ -7,6 +7,7 @@ from transactions.views import (
             )
 
 urlpatterns = [
+
     path('home/', HomeView.as_view(), name='home'),
     path('list/', TransactionsListView.as_view(), name='transactions_list'),
     path('create/', TransactionsCreateView.as_view(), name='transactions_create'),
