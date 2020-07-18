@@ -4,26 +4,38 @@
 <div class="row">
   <div class="col-4">
     <h3><a href="{% url 'transactions_list' %}"><span class="text-dark"><u>Transactions</u></span></a></h3>
-    <a href="{% url 'transactions_create' %}">New</a>
-    <hr>
-    <table>
+    <p><a href="{% url 'transactions_create' %}">New</a><br></p>
+    <table class="table table-sm">
       <thead>
       </thead>
       <tbody>
+        <tr>
+          <td class="w-30">Name</td>
+          <td class="w-50">
+            <p class="text-right">Amount</p>
+          </td>
+        </tr>
         {% for transaction in transactions %}
         <tr>
-          <a href="{% url 'transactions_detail' transaction.pk %}">
-            {{ transaction.date }} |
-            {{ transaction.name }}
+          <td>
+            <a href="{% url 'transactions_detail' transaction.pk %}">
+              {{ transaction.date }} |
+              {{ transaction.name }}
+            </a>
+          </td>
 
-            {% if transaction.type == 'Credit' %}
-            +
-            {% elif transaction.type == 'Debit' %}
-            -
-            {% endif %}
-            {{ transaction.amount }}
+          <td>
+            <p class="text-right">
+              {% if transaction.type == 'Credit' %}
+              +
+              {% elif transaction.type == 'Debit' %}
+              -
+              {% endif %}
+              {{ transaction.amount }}
+            </p>
+          </td>
 
-          </a><br>
+
         </tr>
         {% endfor %}
       </tbody>
@@ -33,17 +45,20 @@
 
   <div class="col-4">
     <h3><a href="{% url 'business_list' %}"><span class="text-dark"><u>Business Groups</u></span></a></h3>
-    <a href="{% url 'business_create' %}">New</a>
-    <hr>
-    <table>
+    <p><a href="{% url 'business_create' %}">New</a><br></p>
+    <table class="table table-sm">
       <tr>
-        <td>Name</td>
-        <td>Balance</td>
+        <td class="w-30">Name</td>
+        <td class="w-50">
+          <p class="text-right">Balance</p>
+        </td>
       </tr>
       {% for business in businesses %}
       <tr>
         <td><a href="{% url 'business_detail' business.pk %}">{{ business.name }}</a></td>
-        <td>{{ business.balance }}</td>
+        <td>
+          <p class="text-right">{{ business.balance }}</p>
+        </td>
       <tr>
         {% endfor %}
 
@@ -52,17 +67,20 @@
 
   <div class="col-4">
     <h3><a href="{% url 'accounts_list' %}"><span class="text-dark"><u>Accounts</u></span></a></h3>
-    <a href="{% url 'accounts_create' %}">New</a>
-    <hr>
-    <table>
+    <p><a href="{% url 'accounts_create' %}">New</a></p>
+    <table class="table table-sm">
       <tr>
         <td>Name</td>
-        <td>Balance</td>
+        <td>
+          <p class="text-right">Balance</p>
+        </td>
       </tr>
       {% for account in accounts %}
       <tr>
         <td><a href="{% url 'accounts_detail' account.pk %}">{{ account.name }}</a></td>
-        <td>{{ account.balance }}</td>
+        <td>
+          <p class="text-right">{{ account.balance }}</p>
+        </td>
       </tr>
       {% endfor %}
     </table>
