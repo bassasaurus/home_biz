@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from decouple import config
+from dotenv import load_dotenv
+load_dotenv(verbose=True)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,10 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -92,12 +93,26 @@ WSGI_APPLICATION = 'home_biz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+POSTGRES_DB_NAME = os.getenv('POSTGRES_DB_NAME')
+POSTGRES_UN = os.getenv('POSTGRES_UN')
+POSTGRES_PW = os.getenv('POSTGRES_PW')
+DB_HOST = os.getenv('DB_HOST')
+
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': POSTGRES_DB_NAME,
+        'USER': POSTGRES_UN,
+        'PASSWORD': POSTGRES_PW,
+        'HOST': DB_HOST,
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -136,7 +151,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_URL = '/static/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
