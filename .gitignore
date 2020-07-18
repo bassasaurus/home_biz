@@ -139,3 +139,6 @@ dmypy.json
 cython_debug/
 
 db.sqlite3
+
+Dockerfile
+docker-compose.yml
