@@ -1,5 +1,11 @@
-<footer class="footer">
+<footer class="footer fixed-bottom">
       <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
+        <span class="text-muted">
+          {% if user.is_authenticated %}
+            You are logged in as {{ user.email }}
+          {% else %}
+            
+          {% endif %}
+        </span>
       </div>
     </footer>

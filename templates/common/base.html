@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -8,12 +9,19 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/custom.css'%}">
 
   <title></title>
 </head>
 
 <body>
+  <header>
   {% include 'common/navbar.html' %}
+</header>
+
+  {% if request.path == '/' %}
+    {% include 'common/main.html' %}
+  {% endif %}
 
   {% if request.user.is_authenticated %}
    {% block content %}
@@ -24,7 +32,6 @@
   {% endblock %}
 
   {% endif %}
-</div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
