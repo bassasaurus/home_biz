@@ -2,17 +2,20 @@
 
 {% block auth_content %}
 
+<h3>Login</h3>
+<hr>
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p class="text-danger">Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
+      <p class="text-info">Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
     {% else %}
-    <p>Please login to see this page.</p>
+      <p class="text-info">Please login to see this page.</p>
     {% endif %}
+    <hr>
 {% endif %}
 
 <form method="post" action="{% url 'login' %}">
@@ -31,8 +34,9 @@
 <input type="submit" value="login">
 <input type="hidden" name="next" value="{{ next }}">
 </form>
+<hr>
 
 {# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<p class=text><a href="{% url 'password_reset' %}">Lost password?</a></p>
 
 {% endblock %}
