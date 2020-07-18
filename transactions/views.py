@@ -3,6 +3,7 @@ from authentication.views import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from transactions.models import Transactions, BusinessGroups, Accounts
 from django.urls import reverse_lazy, reverse
+from transactions.forms import TransactionsForm
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -20,9 +21,9 @@ class TransactionsListView(LoginRequiredMixin, ListView):
 
 class TransactionsCreateView(LoginRequiredMixin, CreateView):
     model = Transactions
-    fields = ['name', 'date', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
     template_name = 'transactions/transactions_create.html'
     success_url = reverse_lazy('transactions_list')
+    form_class = TransactionsForm
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
