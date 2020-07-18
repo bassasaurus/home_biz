@@ -18,7 +18,7 @@ class Accounts(models.Model):
     updated_timestamp = models.DateTimeField(auto_now=True)
 
     name = models.CharField(max_length=200)
-    amount = MoneyField(max_digits=14, decimal_places=2,
+    balance = MoneyField(max_digits=14, decimal_places=2,
                         default_currency='USD', default=0.00)
 
     def __str__(self):
@@ -42,7 +42,7 @@ class BusinessGroups(models.Model):
     updated_timestamp = models.DateTimeField(auto_now=True)
 
     name = models.CharField(max_length=200)
-    amount = MoneyField(max_digits=14, decimal_places=2,
+    balance = MoneyField(max_digits=14, decimal_places=2,
                         default_currency='USD', default=0.00)
 
     def __str__(self):
