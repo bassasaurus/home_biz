@@ -3,11 +3,10 @@
 {% block content %}
 
 <h3>Transactions List</h3>
+<a href="{% url 'transactions_create' %}">New</a><br>
 <hr>
-<a href="{% url 'transactions_create' %}">New Transaction</a><br>
+
 {% for object in object_list %}
-
-
 
   <p>
   <a href="{% url 'transactions_detail' object.pk %}">{{ object }}</a>

@@ -1,7 +1,36 @@
 {% extends 'common/base.html' %}
 {% block content %}
 
+<div class="row">
+  <div class="col-4">
+    <h3><a href="{% url 'transactions_list' %}"><span class="text-dark">Transactions</span></a></h3>
+    <a href="{% url 'transactions_create' %}">New</a>
+    <hr>
+    {% for transaction in transactions %}
+      <a href="{% url 'transactions_detail' transaction.pk %}">{{ transaction.date }} - {{ transaction.name }} - {{ transaction.amount }}</a><br>
+    {% endfor %}
+  </div>
 
-<h1> Home </h1>
+
+<div class="col-4">
+  <h3><a href="{% url 'business_list' %}"><span class="text-dark">Business Groups</span></a></h3>
+  <a href="{% url 'business_create' %}">New</a>
+  <hr>
+  {% for business in businesses %}
+    <a href="{% url 'business_detail' business.pk %}">{{ business.name }}</a><br>
+  {% endfor %}
+</div>
+
+<div class="col-4">
+  <h3><a href="{% url 'accounts_list' %}"><span class="text-dark">Accounts</span></a></h3>
+  <a href="{% url 'accounts_create' %}">New</a>
+  <hr>
+  {% for account in accounts %}
+    <a href="{% url 'accounts_detail' account.pk %}">{{ account.name }}</a><br>
+  {% endfor %}
+</div>
+
+</div> <!--row -->
+
 
 {% endblock %}

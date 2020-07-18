@@ -3,8 +3,9 @@
 {% block content %}
 
 <h3>Accounts List</h3>
+<a href="{% url 'accounts_create' %}">New</a>
 <hr>
-<a href="{% url 'accounts_create' %}">New Account</a><br>
+
 {% for object in object_list %}
   <p>
   <a href="{% url 'accounts_detail' object.pk %}">{{ object }}</a>

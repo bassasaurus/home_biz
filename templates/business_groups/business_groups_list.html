@@ -2,8 +2,9 @@
 
 {% block content %}
 <h3>Business List</h3>
+<a href="{% url 'business_create' %}">New</a>
 <hr>
-<a href="{% url 'business_create' %}">New Business Group</a><br>
+
 {% for object in object_list %}
 
   <p>

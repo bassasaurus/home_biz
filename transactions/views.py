@@ -9,6 +9,13 @@ from transactions.forms import TransactionsForm
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'common/home.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['transactions'] = Transactions.objects.all()
+        context['businesses'] = BusinessGroups.objects.all()
+        context['accounts'] = Accounts.objects.all()
+        return context
+
 
 class IndexView(TemplateView):
     template_name = 'common/index.html'
@@ -41,7 +48,7 @@ class TransactionsUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'transactions/transactions_update.html'
 
     def get_success_url(self):
-        return reverse('transactions-detail', kwargs={'pk': self.object.pk})
+        return reverse('transactions_detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.updated_by = self.request.user
@@ -81,7 +88,7 @@ class BusinessGroupsUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'business_groups/business_groups_update.html'
 
     def get_success_url(self):
-        return reverse('business-detail', kwargs={'pk': self.object.pk})
+        return reverse('business_detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.updated_by = self.request.user
@@ -91,7 +98,7 @@ class BusinessGroupsUpdateView(LoginRequiredMixin, UpdateView):
 class BusinessGroupsDeleteView(LoginRequiredMixin, DeleteView):
     model = BusinessGroups
     template_name = 'business_groups/business_groups_delete.html'
-    success_url = reverse_lazy('business_groups_list')
+    success_url = reverse_lazy('business_list')
 
 
 class AccountsListView(LoginRequiredMixin, ListView):
