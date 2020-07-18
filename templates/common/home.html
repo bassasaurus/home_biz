@@ -6,9 +6,28 @@
     <h3><a href="{% url 'transactions_list' %}"><span class="text-dark"><u>Transactions</u></span></a></h3>
     <a href="{% url 'transactions_create' %}">New</a>
     <hr>
+    <table>
+      <thead>
+        </thead>
+      <tbody>
     {% for transaction in transactions %}
-      <a href="{% url 'transactions_detail' transaction.pk %}">{{ transaction.date }} - {{ transaction.name }} - {{ transaction.amount }}</a><br>
+    <tr>
+      <a href="{% url 'transactions_detail' transaction.pk %}">
+        {{ transaction.date }} |
+        {{ transaction.name }}
+
+          {% if transaction.type == 'Credit' %}
+            +
+          {% elif transaction.type == 'Debit' %}
+            -
+        {% endif %}
+          {{ transaction.amount }}
+
+        </a><br>
+    </tr>
     {% endfor %}
+      </tbody>
+      </table>
   </div>
 
 
@@ -16,18 +35,29 @@
   <h3><a href="{% url 'business_list' %}"><span class="text-dark"><u>Business Groups</u></span></a></h3>
   <a href="{% url 'business_create' %}">New</a>
   <hr>
+  <table>
+    <tr>
+      <td>Name</td><td>Balance</td>
+    </tr>
   {% for business in businesses %}
-    <a href="{% url 'business_detail' business.pk %}">{{ business.name }}</a><br>
+    <tr><td><a href="{% url 'business_detail' business.pk %}">{{ business.name }}</a></td><tr>
   {% endfor %}
+
+  </table>
 </div>
 
 <div class="col-4">
   <h3><a href="{% url 'accounts_list' %}"><span class="text-dark"><u>Accounts</u></span></a></h3>
   <a href="{% url 'accounts_create' %}">New</a>
   <hr>
+  <table>
+    <tr>
+      <td>Name</td><td>Balance</td>
+    </tr>
   {% for account in accounts %}
-    <a href="{% url 'accounts_detail' account.pk %}">{{ account.name }}</a><br>
+    <tr><td><a href="{% url 'accounts_detail' account.pk %}">{{ account.name }}</a></td></tr>
   {% endfor %}
+  </table>
 </div>
 
 </div> <!--row -->

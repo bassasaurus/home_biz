@@ -18,6 +18,8 @@ class Accounts(models.Model):
     updated_timestamp = models.DateTimeField(auto_now=True)
 
     name = models.CharField(max_length=200)
+    amount = MoneyField(max_digits=14, decimal_places=2,
+                        default_currency='USD', default=0.00)
 
     def __str__(self):
         created_by = str(self.created_by)
@@ -40,6 +42,8 @@ class BusinessGroups(models.Model):
     updated_timestamp = models.DateTimeField(auto_now=True)
 
     name = models.CharField(max_length=200)
+    amount = MoneyField(max_digits=14, decimal_places=2,
+                        default_currency='USD', default=0.00)
 
     def __str__(self):
         created_by = str(self.created_by)
@@ -74,8 +78,8 @@ class Categories(models.Model):
 class Transactions(models.Model):
 
     TRANSACTION_CHOICES = [
-        ('CR', 'Credit'),
-        ('DT', 'Debit')
+        ('Credit', 'Credit'),
+        ('Debit', 'Debit')
     ]
 
     class Meta:
@@ -92,7 +96,7 @@ class Transactions(models.Model):
     date = models.DateField()
     amount = MoneyField(max_digits=14, decimal_places=2,
                         default_currency='USD', default=0.00)
-    type = models.CharField(max_length=2, choices=TRANSACTION_CHOICES)
+    type = models.CharField(max_length=6, choices=TRANSACTION_CHOICES)
     accounts = models.ForeignKey(Accounts, models.SET_NULL, null=True)
     categories = models.ForeignKey(Categories, models.SET_NULL, null=True)
     business_groups = models.ForeignKey(
