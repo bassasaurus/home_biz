@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from authentication.views import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from transactions.models import Transactions, BusinessGroups, Accounts
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -94,6 +94,7 @@ class AccountsCreateView(LoginRequiredMixin, CreateView):
     model = Accounts
     fields = ['name', ]
     template_name = 'accounts/accounts_create.html'
+    success_url = reverse_lazy('accounts_list')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -109,6 +110,9 @@ class AccountsUpdateView(LoginRequiredMixin, UpdateView):
     model = Accounts
     fields = ['name', ]
     template_name = 'accounts/accounts_update.html'
+
+    def get_success_url(self):
+        return reverse('accounts-detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.updated_by = self.request.user

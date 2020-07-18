@@ -1,7 +1,9 @@
 {% extends 'common/base.html' %}
 
 {% block content %}
-<h1>Accounts List</h1>
+
+<h3>Accounts List</h3>
+<hr>
 <a href="{% url 'accounts_create' %}">New Account</a><br>
 {% for object in object_list %}
   <p>

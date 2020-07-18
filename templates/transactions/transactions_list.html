@@ -1,7 +1,9 @@
 {% extends 'common/base.html' %}
 
 {% block content %}
-<h1>Transactions List</h1>
+
+<h3>Transactions List</h3>
+<hr>
 <a href="{% url 'transactions_create' %}">New Transaction</a><br>
 {% for object in object_list %}
 
