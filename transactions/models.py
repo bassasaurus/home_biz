@@ -73,6 +73,11 @@ class Categories(models.Model):
 
 class Transactions(models.Model):
 
+    TRANSACTION_CHOICES = [
+        ('CR', 'Credit'),
+        ('DT', 'Debit')
+    ]
+
     class Meta:
         verbose_name_plural = "Transactions"
 
@@ -87,6 +92,7 @@ class Transactions(models.Model):
     date = models.DateField()
     amount = MoneyField(max_digits=14, decimal_places=2,
                         default_currency='USD', default=0.00)
+    type = models.CharField(max_length=2, choices=TRANSACTION_CHOICES)
     accounts = models.ForeignKey(Accounts, models.SET_NULL, null=True)
     categories = models.ForeignKey(Categories, models.SET_NULL, null=True)
     business_groups = models.ForeignKey(
