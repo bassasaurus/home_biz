@@ -2,9 +2,11 @@ html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   margin-bottom: 60px; /* Margin bottom by footer height */
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -14,11 +16,10 @@ body {
   background-color: #f5f5f5;
 }
 
-
 .div-wrapper {
     height: 200px;
     margin-top: 40px;
-    
+
 }
 
 .div-to-align {

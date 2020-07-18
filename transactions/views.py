@@ -22,6 +22,7 @@ class TransactionsCreateView(LoginRequiredMixin, CreateView):
     model = Transactions
     fields = ['name', 'date', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
     template_name = 'transactions/transactions_create.html'
+    success_url = reverse_lazy('transactions_list')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -37,6 +38,9 @@ class TransactionsUpdateView(LoginRequiredMixin, UpdateView):
     model = Transactions
     fields = ['name', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
     template_name = 'transactions/transactions_update.html'
+
+    def get_success_url(self):
+        return reverse('transactions-detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.updated_by = self.request.user
@@ -58,6 +62,7 @@ class BusinessGroupsCreateView(LoginRequiredMixin, CreateView):
     model = BusinessGroups
     fields = ['name', ]
     template_name = 'business_groups/business_groups_create.html'
+    success_url = reverse_lazy('business_list')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -73,6 +78,9 @@ class BusinessGroupsUpdateView(LoginRequiredMixin, UpdateView):
     model = BusinessGroups
     fields = ['name', ]
     template_name = 'business_groups/business_groups_update.html'
+
+    def get_success_url(self):
+        return reverse('business-detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.updated_by = self.request.user

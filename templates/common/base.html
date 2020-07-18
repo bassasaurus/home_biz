@@ -19,26 +19,27 @@
     {% include 'common/navbar.html' %}
   </header>
   <div class="container">
-    {% if request.path == '/' %}
-    {% include 'common/main.html' %}
-    {% endif %}
+    <div class="pt-5">
+      {% if request.path == '/' %}
+      {% include 'common/main.html' %}
+      {% endif %}
 
-    {% if request.user.is_authenticated %}
-    {% block content %}
-    {% endblock %}
-
-
+      {% if request.user.is_authenticated %}
+      {% block content %}
+      {% endblock %}
 
     {% else %}
-    <div class="row">
-      <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
-        <div class="div-to-align">
-          {% block auth_content %}
-          {% endblock %}
-        </div>
+      <div class="row">
+        <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
+          <div class="div-to-align">
+            {% block auth_content %}
+            {% endblock %}
+          </div>
 
+        </div>
       </div>
     </div>
+  </div>
 
   {% endif %}
 
