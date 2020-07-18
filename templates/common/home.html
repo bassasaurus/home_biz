@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-4">
-    <h3><a href="{% url 'transactions_list' %}"><span class="text-dark">Transactions</span></a></h3>
+    <h3><a href="{% url 'transactions_list' %}"><span class="text-dark"><u>Transactions</u></span></a></h3>
     <a href="{% url 'transactions_create' %}">New</a>
     <hr>
     {% for transaction in transactions %}
@@ -13,7 +13,7 @@
 
 
 <div class="col-4">
-  <h3><a href="{% url 'business_list' %}"><span class="text-dark">Business Groups</span></a></h3>
+  <h3><a href="{% url 'business_list' %}"><span class="text-dark"><u>Business Groups</u></span></a></h3>
   <a href="{% url 'business_create' %}">New</a>
   <hr>
   {% for business in businesses %}
@@ -22,7 +22,7 @@
 </div>
 
 <div class="col-4">
-  <h3><a href="{% url 'accounts_list' %}"><span class="text-dark">Accounts</span></a></h3>
+  <h3><a href="{% url 'accounts_list' %}"><span class="text-dark"><u>Accounts</u></span></a></h3>
   <a href="{% url 'accounts_create' %}">New</a>
   <hr>
   {% for account in accounts %}
