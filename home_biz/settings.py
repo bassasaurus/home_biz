@@ -21,7 +21,7 @@ load_dotenv(verbose=True)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-if DEBUG is True:
+if DEBUG is False:
     sentry_sdk.init(
         dsn=os.getenv('SENTRY_DSN'),
         integrations=[DjangoIntegration()],
@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'profiles',
     'transactions',
 
+    'django_extensions',
     'djmoney',
 ]
 
