@@ -1,10 +1,11 @@
 from django.urls import path
 from transactions.views import (
-            IndexView, HomeView, TransactionsListView, TransactionsCreateView,
-            TransactionsDeleteView, TransactionsDetailView, TransactionsUpdateView,
-            BusinessGroupsListView, BusinessGroupsCreateView, BusinessGroupsDeleteView,
-            BusinessGroupsDetailView, BusinessGroupsUpdateView, AccountsListView, AccountsCreateView,
-            AccountsUpdateView, AccountsDetailView, AccountsDeleteView
+            IndexView, HomeView,
+            TransactionsListView, TransactionsCreateView,TransactionsDeleteView, TransactionsDetailView, TransactionsUpdateView,
+            BusinessGroupsListView, BusinessGroupsCreateView, BusinessGroupsDeleteView, BusinessGroupsDetailView, BusinessGroupsUpdateView,
+            AccountsListView, AccountsCreateView,AccountsUpdateView, AccountsDetailView, AccountsDeleteView,
+            CategoriesListView, CategoriesCreateView, CategoriesUpdateView, CategoriesDetailView, CategoriesDeleteView
+
             )
 
 urlpatterns = [
@@ -29,5 +30,11 @@ urlpatterns = [
     path('accounts/detail/<pk>', AccountsDetailView.as_view(), name='accounts_detail'),
     path('accounts/update/<pk>', AccountsUpdateView.as_view(), name='accounts_update'),
     path('accounts/delete/<pk>', AccountsDeleteView.as_view(), name='accounts_delete'),
+
+    path('categories/list/', CategoriesListView.as_view(), name='categories_list'),
+    path('categories/create/', CategoriesCreateView.as_view(), name='categories_create'),
+    path('categories/detail/<pk>', CategoriesDetailView.as_view(), name='categories_detail'),
+    path('categories/update/<pk>', CategoriesUpdateView.as_view(), name='categories_update'),
+    path('categories/delete/<pk>', CategoriesDeleteView.as_view(), name='categories_delete'),
 
 ]
