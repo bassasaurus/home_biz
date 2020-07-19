@@ -111,14 +111,14 @@ class BusinessGroupsDeleteView(LoginRequiredMixin, DeleteView):
 
 class AccountsListView(LoginRequiredMixin, ListView):
     model = Accounts
-    template_name = 'categories/categories_list.html'
+    template_name = 'accounts/accounts_list.html'
 
 
 class AccountsCreateView(LoginRequiredMixin, CreateView):
     model = Accounts
     fields = ['name', ]
-    template_name = 'categories/categories_create.html'
-    success_url = reverse_lazy('categories_list')
+    template_name = 'accounts/accounts_create.html'
+    success_url = reverse_lazy('accounts_list')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -127,16 +127,16 @@ class AccountsCreateView(LoginRequiredMixin, CreateView):
 
 class AccountsDetailView(LoginRequiredMixin, DetailView):
     model = Accounts
-    template_name = 'categories/categories_detail.html'
+    template_name = 'accounts/accounts_detail.html'
 
 
 class AccountsUpdateView(LoginRequiredMixin, UpdateView):
     model = Accounts
     fields = ['name', ]
-    template_name = 'categories/categories_update.html'
+    template_name = 'accounts/accounts_update.html'
 
     def get_success_url(self):
-        return reverse('categories-detail', kwargs={'pk': self.object.pk})
+        return reverse('accounts_detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.updated_by = self.request.user
@@ -145,8 +145,8 @@ class AccountsUpdateView(LoginRequiredMixin, UpdateView):
 
 class AccountsDeleteView(LoginRequiredMixin, DeleteView):
     model = Accounts
-    template_name = 'categories/categories_delete.html'
-    success_url = reverse_lazy('categories_list')
+    template_name = 'accounts/accounts_delete.html'
+    success_url = reverse_lazy('accounts_list')
 
 
 class CategoriesListView(LoginRequiredMixin, ListView):
@@ -176,7 +176,7 @@ class CategoriesUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'categories/categories_update.html'
 
     def get_success_url(self):
-        return reverse('categories-detail', kwargs={'pk': self.object.pk})
+        return reverse('categories_detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.updated_by = self.request.user
