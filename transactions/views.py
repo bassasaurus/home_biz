@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from authentication.views import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
-from transactions.models import Transactions, BusinessGroups, Accounts
+from transactions.models import Transactions, BusinessGroups, Accounts, Categories
 from django.urls import reverse_lazy, reverse
 from transactions.forms import TransactionsForm
 
@@ -13,7 +13,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['transactions'] = Transactions.objects.all()
         context['businesses'] = BusinessGroups.objects.all()
-        context['accounts'] = Accounts.objects.all()
+        context['categories'] = Accounts.objects.all()
         return context
 
 
@@ -44,7 +44,7 @@ class TransactionsDetailView(LoginRequiredMixin, DetailView):
 
 class TransactionsUpdateView(LoginRequiredMixin, UpdateView):
     model = Transactions
-    fields = ['name', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
+    fields = ['name', 'amount', 'categories', 'categories', 'business_groups', 'comments']
     template_name = 'transactions/transactions_update.html'
 
     def get_success_url(self):
@@ -103,14 +103,14 @@ class BusinessGroupsDeleteView(LoginRequiredMixin, DeleteView):
 
 class AccountsListView(LoginRequiredMixin, ListView):
     model = Accounts
-    template_name = 'accounts/accounts_list.html'
+    template_name = 'categories/categories_list.html'
 
 
 class AccountsCreateView(LoginRequiredMixin, CreateView):
     model = Accounts
     fields = ['name', ]
-    template_name = 'accounts/accounts_create.html'
-    success_url = reverse_lazy('accounts_list')
+    template_name = 'categories/categories_create.html'
+    success_url = reverse_lazy('categories_list')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -119,16 +119,16 @@ class AccountsCreateView(LoginRequiredMixin, CreateView):
 
 class AccountsDetailView(LoginRequiredMixin, DetailView):
     model = Accounts
-    template_name = 'accounts/accounts_detail.html'
+    template_name = 'categories/categories_detail.html'
 
 
 class AccountsUpdateView(LoginRequiredMixin, UpdateView):
     model = Accounts
     fields = ['name', ]
-    template_name = 'accounts/accounts_update.html'
+    template_name = 'categories/categories_update.html'
 
     def get_success_url(self):
-        return reverse('accounts-detail', kwargs={'pk': self.object.pk})
+        return reverse('categories-detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.updated_by = self.request.user
@@ -137,5 +137,45 @@ class AccountsUpdateView(LoginRequiredMixin, UpdateView):
 
 class AccountsDeleteView(LoginRequiredMixin, DeleteView):
     model = Accounts
-    template_name = 'accounts/accounts_delete.html'
-    success_url = reverse_lazy('accounts_list')
+    template_name = 'categories/categories_delete.html'
+    success_url = reverse_lazy('categories_list')
+
+
+class CategoriesListView(LoginRequiredMixin, ListView):
+    model = Categories
+    template_name = 'categories/categories_list.html'
+
+
+class CategoriesCreateView(LoginRequiredMixin, CreateView):
+    model = Categories
+    fields = ['name', ]
+    template_name = 'categories/categories_create.html'
+    success_url = reverse_lazy('categories_list')
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super(CategoriesCreateView, self).form_valid(form)
+
+
+class CategoriesDetailView(LoginRequiredMixin, DetailView):
+    model = Categories
+    template_name = 'categories/categories_detail.html'
+
+
+class CategoriesUpdateView(LoginRequiredMixin, UpdateView):
+    model = Categories
+    fields = ['name', ]
+    template_name = 'categories/categories_update.html'
+
+    def get_success_url(self):
+        return reverse('categories-detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        form.instance.updated_by = self.request.user
+        return super(CategoriesUpdateView, self).form_valid(form)
+
+
+class CategoriesDeleteView(LoginRequiredMixin, DeleteView):
+    model = Categories
+    template_name = 'categories/categories_delete.html'
+    success_url = reverse_lazy('categories_list')
