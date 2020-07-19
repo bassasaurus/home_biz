@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'profiles',
     'transactions',
 
-    'django_extensions',
+
     'djmoney',
 ]
 
