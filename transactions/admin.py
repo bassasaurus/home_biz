@@ -19,7 +19,7 @@ class TransactionsAdmin(admin.ModelAdmin):
 class BusinessGroupsAdmin(admin.ModelAdmin):
 
     readonly_fields = ('created_by', 'created_timestamp',
-                       'updated_by', 'updated_timestamp')
+                       'updated_by', 'updated_timestamp', 'balance')
 
     def save_model(self, request, obj, form, change):
 
@@ -32,7 +32,7 @@ class BusinessGroupsAdmin(admin.ModelAdmin):
 class AccountsAdmin(admin.ModelAdmin):
 
     readonly_fields = ('created_by', 'created_timestamp',
-                       'updated_by', 'updated_timestamp')
+                       'updated_by', 'updated_timestamp', 'balance')
 
     def save_model(self, request, obj, form, change):
 
@@ -45,7 +45,7 @@ class AccountsAdmin(admin.ModelAdmin):
 class CategoriesAdmin(admin.ModelAdmin):
 
     readonly_fields = ('created_by', 'created_timestamp',
-                       'updated_by', 'updated_timestamp')
+                       'updated_by', 'updated_timestamp', 'balance')
 
     def save_model(self, request, obj, form, change):
 

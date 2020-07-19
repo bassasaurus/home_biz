@@ -19,7 +19,7 @@ class Accounts(models.Model):
 
     name = models.CharField(max_length=200)
     balance = MoneyField(max_digits=14, decimal_places=2,
-                        default_currency='USD', default=0.00)
+                        default_currency='USD', default=0.00, editable=False,)
 
     def __str__(self):
         created_by = str(self.created_by)
@@ -43,7 +43,7 @@ class BusinessGroups(models.Model):
 
     name = models.CharField(max_length=200)
     balance = MoneyField(max_digits=14, decimal_places=2,
-                        default_currency='USD', default=0.00)
+                        default_currency='USD', default=0.00, editable=False,)
 
     def __str__(self):
         created_by = str(self.created_by)
@@ -66,8 +66,8 @@ class Categories(models.Model):
     updated_timestamp = models.DateTimeField(auto_now=True)
 
     name = models.CharField(max_length=200)
-    amount = MoneyField(max_digits=14, decimal_places=2,
-                        default_currency='USD', default=0.00)
+    balance = MoneyField(max_digits=14, decimal_places=2,
+                        default_currency='USD', default=0.00, editable=False,)
 
     def __str__(self):
         created_by = str(self.created_by)

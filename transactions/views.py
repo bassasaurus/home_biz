@@ -93,7 +93,7 @@ class AccountsListView(LoginRequiredMixin, ListView):
 
 class AccountsCreateView(LoginRequiredMixin, CreateView):
     model = Accounts
-    fields = ['name', 'balance']
+    fields = ['name',]
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('accounts_list')
 
@@ -109,7 +109,7 @@ class AccountsDetailView(LoginRequiredMixin, DetailView):
 
 class AccountsUpdateView(LoginRequiredMixin, UpdateView):
     model = Accounts
-    fields = ['name', 'balance']
+    fields = ['name',]
     template_name = 'accounts/accounts_update.html'
 
     def get_success_url(self):
@@ -133,7 +133,7 @@ class CategoriesListView(LoginRequiredMixin, ListView):
 
 class CategoriesCreateView(LoginRequiredMixin, CreateView):
     model = Categories
-    fields = ['name', 'amount']
+    fields = ['name',]
     template_name = 'categories/categories_create.html'
     success_url = reverse_lazy('categories_list')
 
@@ -149,7 +149,7 @@ class CategoriesDetailView(LoginRequiredMixin, DetailView):
 
 class CategoriesUpdateView(LoginRequiredMixin, UpdateView):
     model = Categories
-    fields = ['name', 'amount']
+    fields = ['name',]
     template_name = 'categories/categories_update.html'
 
     def get_success_url(self):
