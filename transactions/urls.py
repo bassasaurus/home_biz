@@ -1,23 +1,17 @@
 from django.urls import path
 from transactions.views import (
-            IndexView, HomeView,
-            TransactionsListView, TransactionsCreateView,TransactionsDeleteView, TransactionsDetailView, TransactionsUpdateView,
+            TransactionsListView, TransactionsCreateView, TransactionsDeleteView, TransactionsDetailView, TransactionsUpdateView,
             BusinessGroupsListView, BusinessGroupsCreateView, BusinessGroupsDeleteView, BusinessGroupsDetailView, BusinessGroupsUpdateView,
-            AccountsListView, AccountsCreateView,AccountsUpdateView, AccountsDetailView, AccountsDeleteView,
-            CategoriesListView, CategoriesCreateView, CategoriesUpdateView, CategoriesDetailView, CategoriesDeleteView
-
+            AccountsListView, AccountsCreateView, AccountsUpdateView, AccountsDetailView, AccountsDeleteView,
+            CategoriesListView, CategoriesCreateView, CategoriesUpdateView, CategoriesDetailView, CategoriesDeleteView,
             )
 
 urlpatterns = [
-
-    path('', IndexView.as_view(), name='index'),
-    path('home/', HomeView.as_view(), name='home'),
-
     path('transactions/list/', TransactionsListView.as_view(), name='transactions_list'),
     path('transactions/create/', TransactionsCreateView.as_view(), name='transactions_create'),
     path('tranactions/detail/<pk>', TransactionsDetailView.as_view(), name='transactions_detail'),
     path('transactions/update/<pk>', TransactionsUpdateView.as_view(), name='transactions_update'),
-    path('trandactions/delete/<pk>', TransactionsDeleteView.as_view(), name='transactions_delete'),
+    path('tranactions/delete/<pk>', TransactionsDeleteView.as_view(), name='transactions_delete'),
 
     path('business/list/', BusinessGroupsListView.as_view(), name='business_list'),
     path('business/create/', BusinessGroupsCreateView.as_view(), name='business_create'),
@@ -36,5 +30,4 @@ urlpatterns = [
     path('categories/detail/<pk>', CategoriesDetailView.as_view(), name='categories_detail'),
     path('categories/update/<pk>', CategoriesUpdateView.as_view(), name='categories_update'),
     path('categories/delete/<pk>', CategoriesDeleteView.as_view(), name='categories_delete'),
-
 ]

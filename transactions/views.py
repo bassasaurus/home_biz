@@ -1,32 +1,9 @@
-from django.views.generic import TemplateView
 from authentication.views import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from transactions.models import Transactions, BusinessGroups, Accounts, Categories
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect
 from transactions.forms import TransactionsForm
-
-
-class HomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'common/home.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['transactions'] = Transactions.objects.all()
-        context['businesses'] = BusinessGroups.objects.all()
-        context['accounts'] = Accounts.objects.all()
-        context['categories'] = Categories.objects.all()
-        return context
-
-
-class IndexView(TemplateView):
-    template_name = 'common/index.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect('home')
-
-            return super(IndexView, self).dispatch(request, *args, **kwargs)
 
 
 class TransactionsListView(LoginRequiredMixin, ListView):
@@ -37,7 +14,7 @@ class TransactionsListView(LoginRequiredMixin, ListView):
 class TransactionsCreateView(LoginRequiredMixin, CreateView):
     model = Transactions
     template_name = 'transactions/transactions_create.html'
-    success_url = reverse('transactions_list')
+    success_url = reverse_lazy('transactions_list')
     form_class = TransactionsForm
 
     def form_valid(self, form):
@@ -66,7 +43,7 @@ class TransactionsUpdateView(LoginRequiredMixin, UpdateView):
 class TransactionsDeleteView(LoginRequiredMixin, DeleteView):
     model = Transactions
     template_name = 'transactions/transactions_delete.html'
-    success_url = reverse('transactions_list')
+    success_url = reverse_lazy('transactions_list')
 
 
 class BusinessGroupsListView(LoginRequiredMixin, ListView):
@@ -78,7 +55,7 @@ class BusinessGroupsCreateView(LoginRequiredMixin, CreateView):
     model = BusinessGroups
     fields = ['name', ]
     template_name = 'business_groups/business_groups_create.html'
-    success_url = reverse('business_list')
+    success_url = reverse_lazy('business_list')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -106,7 +83,7 @@ class BusinessGroupsUpdateView(LoginRequiredMixin, UpdateView):
 class BusinessGroupsDeleteView(LoginRequiredMixin, DeleteView):
     model = BusinessGroups
     template_name = 'business_groups/business_groups_delete.html'
-    success_url = reverse('business_list')
+    success_url = reverse_lazy('business_list')
 
 
 class AccountsListView(LoginRequiredMixin, ListView):
@@ -116,9 +93,9 @@ class AccountsListView(LoginRequiredMixin, ListView):
 
 class AccountsCreateView(LoginRequiredMixin, CreateView):
     model = Accounts
-    fields = ['name', ]
+    fields = ['name', 'balance']
     template_name = 'accounts/accounts_create.html'
-    success_url = reverse('accounts_list')
+    success_url = reverse_lazy('accounts_list')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -132,7 +109,7 @@ class AccountsDetailView(LoginRequiredMixin, DetailView):
 
 class AccountsUpdateView(LoginRequiredMixin, UpdateView):
     model = Accounts
-    fields = ['name', ]
+    fields = ['name', 'balance']
     template_name = 'accounts/accounts_update.html'
 
     def get_success_url(self):
@@ -146,7 +123,7 @@ class AccountsUpdateView(LoginRequiredMixin, UpdateView):
 class AccountsDeleteView(LoginRequiredMixin, DeleteView):
     model = Accounts
     template_name = 'accounts/accounts_delete.html'
-    success_url = reverse('accounts_list')
+    success_url = reverse_lazy('accounts_list')
 
 
 class CategoriesListView(LoginRequiredMixin, ListView):
@@ -156,9 +133,9 @@ class CategoriesListView(LoginRequiredMixin, ListView):
 
 class CategoriesCreateView(LoginRequiredMixin, CreateView):
     model = Categories
-    fields = ['name', ]
+    fields = ['name', 'amount']
     template_name = 'categories/categories_create.html'
-    success_url = reverse('categories_list')
+    success_url = reverse_lazy('categories_list')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -172,7 +149,7 @@ class CategoriesDetailView(LoginRequiredMixin, DetailView):
 
 class CategoriesUpdateView(LoginRequiredMixin, UpdateView):
     model = Categories
-    fields = ['name', ]
+    fields = ['name', 'amount']
     template_name = 'categories/categories_update.html'
 
     def get_success_url(self):
@@ -186,4 +163,4 @@ class CategoriesUpdateView(LoginRequiredMixin, UpdateView):
 class CategoriesDeleteView(LoginRequiredMixin, DeleteView):
     model = Categories
     template_name = 'categories/categories_delete.html'
-    success_url = reverse('categories_list')
+    success_url = reverse_lazy('categories_list')
