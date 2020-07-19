@@ -68,26 +68,6 @@
 <!--row -->
 
 <div class="row">
-  <div class="col-6">
-    <h3><a href="{% url 'accounts_list' %}"><span class="text-dark"><u>Accounts</u></span></a></h3>
-    <p><a href="{% url 'accounts_create' %}">New</a></p>
-    <table class="table table-sm">
-      <tr>
-        <td>Name</td>
-        <td>
-          <p class="text-right">Balance</p>
-        </td>
-      </tr>
-      {% for account in accounts %}
-      <tr>
-        <td><a href="{% url 'accounts_detail' account.pk %}">{{ account.name }}</a></td>
-        <td>
-          <p class="text-right">{{ account.balance }}</p>
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
 
   <div class="col-6">
     <h3><a href="{% url 'categories_list' %}"><span class="text-dark"><u>Categories</u></span></a></h3>
@@ -110,8 +90,28 @@
     </table>
   </div>
 
-</div>
-<!--row -->
+  <div class="col-6">
+    <h3><a href="{% url 'accounts_list' %}"><span class="text-dark"><u>Accounts</u></span></a></h3>
+    <p><a href="{% url 'accounts_create' %}">New</a></p>
+    <table class="table table-sm">
+      <tr>
+        <td>Name</td>
+        <td>
+          <p class="text-right">Balance</p>
+        </td>
+      </tr>
+      {% for account in accounts %}
+      <tr>
+        <td><a href="{% url 'accounts_detail' account.pk %}">{{ account.name }}</a></td>
+        <td>
+          <p class="text-right">{{ account.balance }}</p>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+</div><!--row -->
 
 
 {% endblock %}
