@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 load_dotenv(verbose=True)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', False)
+DEBUG = os.getenv('DEBUG')
 
 if DEBUG is False:
     sentry_sdk.init(
