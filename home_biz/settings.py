@@ -23,7 +23,7 @@ DEBUG = os.getenv('DEBUG', False)
 
 if not os.getenv('DEBUG'):
     sentry_sdk.init(
-        dsn="https://a7b9a161630c410a83a7524bde6b2ad1@o369988.ingest.sentry.io/5348749",
+        dsn=os.getenv('SENTRY_DSN'),
         integrations=[DjangoIntegration()],
 
         # If you wish to associate users to errors (assuming you are using
