@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row">
-  <div class="col-4">
+  <div class="col-6">
     <h3><a href="{% url 'transactions_list' %}"><span class="text-dark"><u>Transactions</u></span></a></h3>
     <p><a href="{% url 'transactions_create' %}">New</a><br></p>
     <table class="table table-sm">
@@ -43,7 +43,7 @@
   </div>
 
 
-  <div class="col-4">
+  <div class="col-6">
     <h3><a href="{% url 'business_list' %}"><span class="text-dark"><u>Business Groups</u></span></a></h3>
     <p><a href="{% url 'business_create' %}">New</a><br></p>
     <table class="table table-sm">
@@ -64,8 +64,10 @@
 
     </table>
   </div>
+</div> <!--row -->
 
-  <div class="col-4">
+<div class="row">
+  <div class="col-6">
     <h3><a href="{% url 'accounts_list' %}"><span class="text-dark"><u>Accounts</u></span></a></h3>
     <p><a href="{% url 'accounts_create' %}">New</a></p>
     <table class="table table-sm">
@@ -86,8 +88,27 @@
     </table>
   </div>
 
-</div>
-<!--row -->
+  <div class="col-6">
+    <h3><a href="{% url 'categories_list' %}"><span class="text-dark"><u>Categories</u></span></a></h3>
+    <p><a href="{% url 'categories_create' %}">New</a></p>
+    <table class="table table-sm">
+      <tr>
+        <td>Name</td>
+        <td>
+          <p class="text-right">Amount</p>
+        </td>
+      </tr>
+      {% for category in categories %}
+      <tr>
+        <td><a href="{% url 'categories_detail' account.pk %}">{{ category.name }}</a></td>
+        <td>
+          <p class="text-right">{{ category.amount }}</p>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div><!--row -->
 
 
 {% endblock %}

@@ -13,7 +13,8 @@ class HomeView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['transactions'] = Transactions.objects.all()
         context['businesses'] = BusinessGroups.objects.all()
-        context['categories'] = Accounts.objects.all()
+        context['accounts'] = Accounts.objects.all()
+        context['categories'] = Categories.objects.all()
         return context
 
 
