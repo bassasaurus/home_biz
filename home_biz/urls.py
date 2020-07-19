@@ -26,7 +26,6 @@ def trigger_error(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('django.contrib.auth.urls')),
-    path('/', include('common_views.urls')),
-    path('transactions/', include('transactions.urls')),
-    path('sentry-debug/', trigger_error),
+    path('', include('common_views.urls')),
+    path('/', include('transactions.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
