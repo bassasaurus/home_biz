@@ -21,9 +21,10 @@ load_dotenv(verbose=True)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-if DEBUG is False:
+print(os.getenv('SENTRY_DSN'))
+if DEBUG is True:
     sentry_sdk.init(
-        dsn=os.getenv('SENTRY_DSN'),
+        dsn=(os.getenv('SENTRY_DSN')),
         integrations=[DjangoIntegration()],
 
         # If you wish to associate users to errors (assuming you are using
@@ -62,7 +63,7 @@ INSTALLED_APPS = [
     'profiles',
     'transactions',
 
-
+    'django_extensions',
     'djmoney',
 ]
 
