@@ -19,13 +19,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-def trigger_error(request):
-    division_by_zero = 1 / 0
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', include('transactions.urls')),
-    path('sentry-debug/', trigger_error),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
