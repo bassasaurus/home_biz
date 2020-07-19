@@ -3,6 +3,7 @@ from authentication.views import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from transactions.models import Transactions, BusinessGroups, Accounts, Categories
 from django.urls import reverse_lazy, reverse
+from django.shortcuts import redirect
 from transactions.forms import TransactionsForm
 
 
@@ -20,6 +21,12 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
 class IndexView(TemplateView):
     template_name = 'common/index.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('home')
+
+            return super(IndexView, self).dispatch(request, *args, **kwargs)
 
 
 class TransactionsListView(LoginRequiredMixin, ListView):
