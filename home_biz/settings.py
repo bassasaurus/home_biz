@@ -21,7 +21,7 @@ load_dotenv(verbose=True)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
 
-if os.getenv('DEBUG'):
+if not os.getenv('DEBUG'):
     sentry_sdk.init(
         dsn="https://a7b9a161630c410a83a7524bde6b2ad1@o369988.ingest.sentry.io/5348749",
         integrations=[DjangoIntegration()],
