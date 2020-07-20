@@ -3,15 +3,15 @@
 {% block content %}
 
 <h3>Categories List</h3>
-<a href="{% url 'transactions_create' %}">New</a><br>
+<a href="{% url 'categories_create' %}">New</a><br>
 <hr>
 
 {% for object in object_list %}
 
   <p>
-  <a href="{% url 'transactions_detail' object.pk %}">{{ object }}</a>
-  <a href="{% url 'transactions_update' object.pk %}">Update</a>
-  <a href="{% url 'transactions_delete' object.pk %}"> Delete</a>
+  <a href="{% url 'categories_detail' object.pk %}">{{ object }}</a>
+  <a href="{% url 'categories_update' object.pk %}">Update</a>
+  <a href="{% url 'categories_delete' object.pk %}"> Delete</a>
   </p>
 
 {% endfor %}
