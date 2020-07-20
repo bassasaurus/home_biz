@@ -9,7 +9,7 @@ class DateInput(forms.DateInput):
 class TransactionsForm(forms.ModelForm):
     class Meta:
         model = Transactions
-        fields = ['name', 'date', 'amount', 'accounts', 'categories', 'business_groups', 'comments']
+        fields = ['name', 'date', 'amount', 'type', 'accounts', 'categories', 'business_groups', 'comments']
         widgets = {
             'date': DateInput()
         }

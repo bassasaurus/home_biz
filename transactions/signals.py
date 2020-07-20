@@ -6,5 +6,17 @@ from transactions.models import Transactions, Accounts, Categories, BusinessGrou
 @receiver(post_save, sender=Transactions)
 def update_accounts(sender, instance, dispatch_uid='update_accounts', **kwargs):
 
+    account = instance.accounts
 
-    print("Request finished!")
+    if instance.type == 'Debit':
+
+        updated_balance = account.balance - instance.amount
+
+        print(account.name, updated_balance)
+
+
+    if instance.type == 'Credit':
+
+        updated_balance = account.balance + instance.amount
+
+        print(account.name, updated_balance)

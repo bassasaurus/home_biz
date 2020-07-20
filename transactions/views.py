@@ -29,7 +29,7 @@ class TransactionsDetailView(LoginRequiredMixin, DetailView):
 
 class TransactionsUpdateView(LoginRequiredMixin, UpdateView):
     model = Transactions
-    fields = ['name', 'amount', 'categories', 'categories', 'business_groups', 'comments']
+    fields = ['name', 'date', 'amount', 'type', 'accounts', 'categories', 'business_groups', 'comments']
     template_name = 'transactions/transactions_update.html'
 
     def get_success_url(self):
