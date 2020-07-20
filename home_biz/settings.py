@@ -19,9 +19,8 @@ from dotenv import load_dotenv
 load_dotenv(verbose=True)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', False)
+DEBUG = os.getenv('DEBUG')
 
-print(os.getenv('SENTRY_DSN'))
 if DEBUG is True:
     sentry_sdk.init(
         dsn=(os.getenv('SENTRY_DSN')),
@@ -43,7 +42,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # test comment
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')
 
 USE_TZ = True
 TIME_ZONE = 'America/Chicago'
