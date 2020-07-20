@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     'transactions',
 
     'django_extensions',
-    'djmoney',
 ]
 
 MIDDLEWARE = [

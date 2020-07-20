@@ -1,6 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from transactions.models import Transactions, Accounts, BusinessGroups
+from transactions.models import Transactions, Accounts, BusinessGroups, Categories
+from django.db.models import Sum
 
 
 @receiver(post_save, sender=Transactions)
@@ -8,16 +9,20 @@ def update_accounts(sender, instance, dispatch_uid='update_accounts', **kwargs):
 
     account = Accounts.objects.get(pk=instance.accounts.pk)
 
-    if instance.type == 'Debit':
-        updated_balance = instance.accounts.balance - instance.amount
-        account.balance = updated_balance
-        account.save()
+    tranactions_queryset = Transactions.objects.filter(accounts=instance.accounts).aggregate(Sum('amount'))
 
-
-    if instance.type == 'Credit':
-        updated_balance = account.balance + instance.amount
-        account.balance = updated_balance
-        account.save()
+    # account_total = tranactions_queryset.get('amount__sum')
+    # print(type(account_total))
+    #
+    # if instance.type == 'Debit':
+    #     updated_balance = account_total - instance.amount
+    #     account.balance = updated_balance
+    #     account.save()
+    #
+    # if instance.type == 'Credit':
+    #     updated_balance = account_total + instance.amount
+    #     account.balance = updated_balance
+    #     account.save()
 
 @receiver(post_save, sender=Transactions)
 def update_business_groups(sender, instance, dispatch_uid='update_business_groups', **kwargs):
@@ -25,7 +30,7 @@ def update_business_groups(sender, instance, dispatch_uid='update_business_group
     business = BusinessGroups.objects.get(pk=instance.business_groups.pk)
 
     if instance.type == 'Debit':
-        updated_balance = instance.businesss.balance - instance.amount
+        updated_balance = business.balance - instance.amount
         business.balance = updated_balance
         business.save()
 
@@ -34,3 +39,20 @@ def update_business_groups(sender, instance, dispatch_uid='update_business_group
         updated_balance = business.balance + instance.amount
         business.balance = updated_balance
         business.save()
+
+
+@receiver(post_save, sender=Transactions)
+def update_categories(sender, instance, dispatch_uid='update_categories', **kwargs):
+
+    category = Categories.objects.get(pk=instance.categories.pk)
+
+    if instance.type == 'Debit':
+        updated_balance = category.balance - instance.amount
+        category.balance = updated_balance
+        category.save()
+
+
+    if instance.type == 'Credit':
+        updated_balance = category.balance + instance.amount
+        category.balance = updated_balance
+        category.save()
