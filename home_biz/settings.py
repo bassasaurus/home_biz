@@ -42,6 +42,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
+# test comment
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
 
 USE_TZ = True
