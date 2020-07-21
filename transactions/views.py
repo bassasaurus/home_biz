@@ -19,6 +19,13 @@ class TransactionsCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
+
+        if form.instance.type == 'Debit':
+            form.instance.amount = -(form.instance.amount)
+
+        if form.instance.type == 'Credit':
+            form.instance.amount = form.instance.amount
+
         return super(TransactionsCreateView, self).form_valid(form)
 
 
@@ -37,6 +44,16 @@ class TransactionsUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.updated_by = self.request.user
+
+        if form.instance.type == 'Debit' and form.instance.amount < 0:
+            pass
+
+        elif form.instance.type == 'Debit' and form.instance.amount > 0:
+            form.instance.amount = -(form.instance.amount)
+
+        elif form.instance.type is 'Credit':
+            form.instance.amount = form.instance.amount
+
         return super(TransactionsUpdateView, self).form_valid(form)
 
 

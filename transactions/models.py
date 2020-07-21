@@ -99,11 +99,7 @@ class Transactions(models.Model):
     business_groups = models.ForeignKey(
         BusinessGroups, models.SET_NULL, null=True)
     comments = models.CharField(max_length=500, default='', blank=True)
-
-    def save(self):
-        if self.type == 'Debit':
-            self.amount = -(self.amount)
-        super().save()
+    
 
     def __str__(self):
         created_by = str(self.created_by)
