@@ -100,10 +100,15 @@ class Transactions(models.Model):
         BusinessGroups, models.SET_NULL, null=True)
     comments = models.CharField(max_length=500, default='', blank=True)
 
+    def save(self):
+        if self.type == 'Debit':
+            self.amount = -(self.amount)
+        super().save()
+
     def __str__(self):
         created_by = str(self.created_by)
         updated_by = str(self.updated_by)
         amount = str(self.amount)
         created_timestamp = str(self.created_timestamp.strftime('%D%M %H:%M'))
         updated_timestamp = str(self.updated_timestamp.strftime('%D%M %H:%M'))
-        return str(self.name + ' - ' + amount + ' | ' + 'created by: ' + created_by)
+        return str(self.name + ' | ' + amount + ' | ' + 'created by: ' + created_by)

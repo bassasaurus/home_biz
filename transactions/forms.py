@@ -7,6 +7,8 @@ class DateInput(forms.DateInput):
 
 
 class TransactionsForm(forms.ModelForm):
+
+
     class Meta:
         model = Transactions
         fields = ['name', 'date', 'amount', 'type', 'accounts', 'categories', 'business_groups', 'comments']

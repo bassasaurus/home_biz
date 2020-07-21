@@ -11,8 +11,20 @@
       <tbody>
         <tr>
           <td class="w-30">Name</td>
+          <td colspan="1">
+          </td>
           <td class="w-50">
             <p class="text-right">Amount</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+          </td>
+          <td class="w-20">
+            <p class="text-right">Debit</p>
+          </td>
+          <td class="w-20">
+            <p class="text-right">Credit</p>
           </td>
         </tr>
         {% for transaction in transactions %}
@@ -23,14 +35,11 @@
               {{ transaction.name }}
             </a>
           </td>
+          <td colspan="1">
+          </td>
 
           <td>
             <p class="text-right">
-              {% if transaction.type == 'Credit' %}
-              +
-              {% elif transaction.type == 'Debit' %}
-              -
-              {% endif %}
               {{ transaction.amount }}
             </p>
           </td>
@@ -111,7 +120,8 @@
     </table>
   </div>
 
-</div><!--row -->
+</div>
+<!--row -->
 
 
 {% endblock %}
