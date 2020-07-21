@@ -7,6 +7,11 @@ body {
   margin-bottom: 60px; /* Margin bottom by footer height */
 }
 
+td p {
+    margin: 0;
+    padding: 0;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
