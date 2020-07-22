@@ -1,58 +1,58 @@
 {% extends 'common/base.html' %}
 {% block content %}
 
-<div class="">
-  <div class="">
+<div class="row">
+  <div class="col-md-6 d-flex flex-column">
     <h3><a href="{% url 'transactions_list' %}"><span class="text-dark"><u>Transactions</u></span></a></h3>
     <table class="table table-sm">
       <thead>
       </thead>
-        <tbody>
-          <tr>
-            <td>
-              <a href="{% url 'transactions_create' %}">New</a><br>
-            </td>
-            <td class="">
-              <p class="text-right">Debit</p>
-            </td>
-            <td class="">
-              <p class="text-right">Credit</p>
-            </td>
-          </tr>
+      <tbody>
+        <tr>
+          <td>
+            <a href="{% url 'transactions_create' %}">New</a><br>
+          </td>
+          <td class="">
+            <p class="text-right">Debit</p>
+          </td>
+          <td class="">
+            <p class="text-right">Credit</p>
+          </td>
+        </tr>
 
-          {% for transaction in transactions %}
-          <tr>
-            <td style="width: 60%" class="">
-              <a class="text-nowrap" href="{% url 'transactions_detail' transaction.pk %}">
-                {{ transaction.date }} |
-                {{ transaction.name }}
-              </a>
-            </td>
+        {% for transaction in transactions %}
+        <tr>
+          <td style="width: 60%" class="">
+            <a class="text-nowrap" href="{% url 'transactions_detail' transaction.pk %}">
+              {{ transaction.date }} |
+              {{ transaction.name }}
+            </a>
+          </td>
 
-            <td style="width: 20%" class="text-right">
-              {% if transaction.type == 'Debit' %}
-                {{ transaction.amount }}
+          <td style="width: 20%" class="text-right">
+            {% if transaction.type == 'Debit' %}
+            {{ transaction.amount }}
+            {% else %}
+            {% endif %}
+          </td>
+
+          <td style="width: 20%" class="text-right">
+            <p class="text-right">
+              {% if transaction.type == 'Credit' %}
+              {{ transaction.amount }}
               {% else %}
               {% endif %}
-            </td>
-
-            <td style="width: 20%" class="text-right">
-              <p class="text-right">
-                {% if transaction.type == 'Credit' %}
-                  {{ transaction.amount }}
-                {% else %}
-                {% endif %}
-              </p>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
+            </p>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
 
-    </div>
-  <div class="">
-    <div class="">
-      <div class="">
+  </div>
+  <div class="col-md-6 d-flex flex-column">
+    <div class="row">
+      <div class='col'>
         <h3><a href="{% url 'business_list' %}"><span class="text-dark"><u>Business Groups</u></span></a></h3>
 
         <table class="table table-sm">
@@ -72,9 +72,10 @@
             {% endfor %}
 
         </table>
-        </div>
-    <div class="">
-      <div class="">
+      </div>
+    </div>
+    <div class="row">
+      <div class='col'>
         <h3><a href="{% url 'home' %}"><span class="text-dark"><u>Categories</u></span></a></h3>
 
         <table class="table table-sm">
@@ -92,10 +93,10 @@
           </tr>
           {% endfor %}
         </table>
-        </div>
       </div>
-    <div class="">
-      <div class="">
+    </div>
+    <div class="row">
+      <div class='col'>
         <h3><a href="{% url 'accounts_list' %}"><span class="text-dark"><u>Accounts</u></span></a></h3>
         <table class="table table-sm">
           <tr>
@@ -112,11 +113,11 @@
           </tr>
           {% endfor %}
         </table>
-        </div>
-      </div>
       </div>
     </div>
   </div>
+</div>
+</div>
 
 
 {% endblock %}
