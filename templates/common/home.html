@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-md-6 d-flex flex-column">
-    <h3><a href="{% url 'transactions_list' %}"><span class="text-dark"><u>Transactions</u></span></a></h3>
+    <h5><a href="{% url 'transactions_list' %}"><span class="text-dark"><u>All Transactions</u></span></a></h5>
     <table class="table table-sm">
       <thead>
       </thead>
@@ -51,72 +51,8 @@
 
   </div>
   <div class="col-md-6 d-flex flex-column">
-    <div class="row">
-      <div class='col'>
-        <h3><a href="{% url 'business_list' %}"><span class="text-dark"><u>Business Groups</u></span></a></h3>
-
-        <table class="table table-sm">
-          <tr>
-            <td colspan="2">
-              <a href="{% url 'business_create' %}">New</a><br>
-            </td>
-
-          </tr>
-          {% for business in businesses %}
-          <tr>
-            <td><a href="{% url 'business_detail' business.pk %}">{{ business.name }}</a></td>
-            <td>
-              <p class="text-right">{{ business.balance }}</p>
-            </td>
-          <tr>
-            {% endfor %}
-
-        </table>
-      </div>
-    </div>
-    <div class="row">
-      <div class='col'>
-        <h3><a href="{% url 'home' %}"><span class="text-dark"><u>Categories</u></span></a></h3>
-
-        <table class="table table-sm">
-          <tr>
-            <td colsan="2">
-              <p><a href="{% url 'categories_create' %}">New</a></p>
-            </td>
-          </tr>
-          {% for category in categories %}
-          <tr>
-            <td><a href="{% url 'categories_detail' category.pk %}">{{ category.name }}</a></td>
-            <td>
-              <p class="text-right">{{ category.balance }}</p>
-            </td>
-          </tr>
-          {% endfor %}
-        </table>
-      </div>
-    </div>
-    <div class="row">
-      <div class='col'>
-        <h3><a href="{% url 'accounts_list' %}"><span class="text-dark"><u>Accounts</u></span></a></h3>
-        <table class="table table-sm">
-          <tr>
-            <td colspan="">
-              <p><a href="{% url 'accounts_create' %}">New</a></p>
-            </td>
-          </tr>
-          {% for account in accounts %}
-          <tr>
-            <td><a href="{% url 'accounts_detail' account.pk %}">{{ account.name }}</a></td>
-            <td>
-              <p class="text-right">{{ account.balance }}</p>
-            </td>
-          </tr>
-          {% endfor %}
-        </table>
-      </div>
-    </div>
+    {% include 'common/tabs.html' %}
   </div>
-</div>
 </div>
 
 
