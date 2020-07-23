@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'profiles',
     'transactions',
 
-    'django_extensions',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -74,6 +74,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SESSION_COOKIE_SAMESTIE = 'None'
 
 ROOT_URLCONF = 'home_biz.urls'
 
