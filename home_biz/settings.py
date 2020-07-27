@@ -14,12 +14,14 @@ import os
 import logging.config
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
-from decouple import config
 
-DEBUG=config('DEBUG', cast=bool)
+from dotenv import load_dotenv
+load_dotenv(verbose=True)
+
+DEBUG=os.getenv('DEBUG')
 
 
-if DEBUG is False:
+if os.getenv('DEBUG') is False:
     sentry_sdk.init(
         dsn=(config('SENTRY_DSN')),
         integrations=[DjangoIntegration()],
@@ -37,10 +39,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # test comment
-ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(",")
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
 
 USE_TZ = True
 TIME_ZONE = 'America/Chicago'
@@ -111,11 +113,11 @@ WSGI_APPLICATION = 'home_biz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-POSTGRES_DB_NAME = config('POSTGRES_DB_NAME')
-POSTGRES_UN = config('POSTGRES_UN')
-POSTGRES_PW = config('POSTGRES_PW')
-DB_HOST = config('DB_HOST')
-PORT = config('PORT')
+POSTGRES_DB_NAME = os.getenv('POSTGRES_DB_NAME')
+POSTGRES_UN = os.getenv('POSTGRES_UN')
+POSTGRES_PW = os.getenv('POSTGRES_PW')
+DB_HOST = os.getenv('DB_HOST')
+PORT = os.getenv('PORT')
 
 DATABASES = {
     # 'default': {
@@ -179,26 +181,28 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGGING_CONFIG = None
 
 # Get loglevel from env
-LOGLEVEL = config('DJANGO_LOGLEVEL', 'info').upper()
+LOGLEVEL = os.getenv('DJANGO_LOGLEVEL').upper()
 
-logging.config.dictConfig({
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'console': {
-            'format': '%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(process)d %(thread)d %(message)s',
+
+if os.getenv('DEBUG') is False:
+    logging.config.dictConfig({
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'console': {
+                'format': '%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(process)d %(thread)d %(message)s',
+            },
         },
-    },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'console',
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'formatter': 'console',
+            },
         },
-    },
-    'loggers': {
-        '': {
-            'level': LOGLEVEL,
-            'handlers': ['console',],
+        'loggers': {
+            '': {
+                'level': LOGLEVEL,
+                'handlers': ['console',],
+            },
         },
-    },
-})
+    })
