@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Accounts(models.Model):
 
     class Meta:
@@ -63,7 +64,6 @@ class Categories(models.Model):
     name = models.CharField(max_length=200)
     balance = models.DecimalField(max_digits=14, decimal_places=2, default=0.00, editable=False,)
 
-
     def __str__(self):
         created_by = str(self.created_by)
         updated_by = str(self.updated_by)
@@ -99,7 +99,6 @@ class Transactions(models.Model):
     business_groups = models.ForeignKey(
         BusinessGroups, models.SET_NULL, null=True)
     comments = models.CharField(max_length=500, default='', blank=True)
-    
 
     def __str__(self):
         created_by = str(self.created_by)
