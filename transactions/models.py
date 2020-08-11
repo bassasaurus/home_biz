@@ -22,7 +22,7 @@ class Accounts(models.Model):
         updated_by = str(self.updated_by)
         created_timestamp = str(self.created_timestamp.strftime('%D%M %H:%M'))
         updated_timestamp = str(self.updated_timestamp.strftime('%D%M %H:%M'))
-        return str(self.name + ' | ' + 'created by: ' + created_by + ' at: ' + created_timestamp + ' | ' + 'updated_by: ' + updated_by + ' at: ' + updated_timestamp)
+        return str(self.name)
 
 
 class BusinessGroups(models.Model):
@@ -46,7 +46,7 @@ class BusinessGroups(models.Model):
         updated_by = str(self.updated_by)
         created_timestamp = str(self.created_timestamp.strftime('%D%M %H:%M'))
         updated_timestamp = str(self.updated_timestamp.strftime('%D%M %H:%M'))
-        return str(self.name + ' | ' + 'created by: ' + created_by + ' at: ' + created_timestamp + ' | ' + 'updated_by: ' + updated_by + ' at: ' + updated_timestamp)
+        return str(self.name)
 
 
 class Categories(models.Model):
@@ -69,7 +69,7 @@ class Categories(models.Model):
         updated_by = str(self.updated_by)
         created_timestamp = str(self.created_timestamp.strftime('%D%M %H:%M'))
         updated_timestamp = str(self.updated_timestamp.strftime('%D%M %H:%M'))
-        return str(self.name + ' | ' + 'created by: ' + created_by + ' at: ' + created_timestamp + ' | ' + 'updated_by: ' + updated_by + ' at: ' + updated_timestamp)
+        return str(self.name)
 
 
 class Transactions(models.Model):
