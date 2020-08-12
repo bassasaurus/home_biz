@@ -1,12 +1,18 @@
 from django.urls import path
 from transactions.views import (
-            TransactionsListView, TransactionsCreateView, TransactionsDeleteView, TransactionsDetailView, TransactionsUpdateView,
-            BusinessGroupsListView, BusinessGroupsCreateView, BusinessGroupsDeleteView, BusinessGroupsDetailView, BusinessGroupsUpdateView,
-            AccountsListView, AccountsCreateView, AccountsUpdateView, AccountsDetailView, AccountsDeleteView,
-            CategoriesListView, CategoriesCreateView, CategoriesUpdateView, CategoriesDetailView, CategoriesDeleteView,
-            )
+    TransactionsListView, TransactionsCreateView, TransactionsDeleteView, TransactionsDetailView, TransactionsUpdateView,
+    BusinessGroupsListView, BusinessGroupsCreateView, BusinessGroupsDeleteView, BusinessGroupsDetailView, BusinessGroupsUpdateView,
+    AccountsListView, AccountsCreateView, AccountsUpdateView, AccountsDetailView, AccountsDeleteView,
+    CategoriesListView, CategoriesCreateView, CategoriesUpdateView, CategoriesDetailView, CategoriesDeleteView,
+    AccountsAutocomplete, CategoriesAutocomplete, BusinessGroupsAutocomplete)
+from transactions.models import Accounts
 
 urlpatterns = [
+
+    path('accounts_autocomplete/', AccountsAutocomplete.as_view(create_field='name'), name='accounts_autocomplete'),
+    path('categories_autocomplete/', CategoriesAutocomplete.as_view(create_field='name'), name='categories_autocomplete'),
+    path('business_groups_autocomplete/', BusinessGroupsAutocomplete.as_view(create_field='name'), name='business_groups_autocomplete'),
+
     path('transactions/list/', TransactionsListView.as_view(), name='transactions_list'),
     path('transactions/create/', TransactionsCreateView.as_view(), name='transactions_create'),
     path('tranactions/detail/<pk>', TransactionsDetailView.as_view(), name='transactions_detail'),
