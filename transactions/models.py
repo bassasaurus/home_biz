@@ -81,6 +81,7 @@ class Transactions(models.Model):
 
     class Meta:
         verbose_name_plural = "Transactions"
+        ordering = ['-date']
 
     created_by = models.ForeignKey(
         User, models.SET_NULL, editable=False, blank=True, null=True, related_name="payee_created_by")
