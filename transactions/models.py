@@ -29,6 +29,7 @@ class BusinessGroups(models.Model):
 
     class Meta:
         verbose_name_plural = "Business Groups"
+        ordering = ['name']
 
     created_by = models.ForeignKey(User, models.SET_NULL, editable=False,
                                    blank=True, null=True, related_name="business_created_by")
@@ -39,7 +40,6 @@ class BusinessGroups(models.Model):
 
     name = models.CharField(max_length=200)
     balance = models.DecimalField(max_digits=14, decimal_places=2, default=0.00, editable=False,)
-
 
     def __str__(self):
         created_by = str(self.created_by)
@@ -53,6 +53,7 @@ class Categories(models.Model):
 
     class Meta:
         verbose_name_plural = "Categories"
+        ordering = ['name']
 
     created_by = models.ForeignKey(User, models.SET_NULL, editable=False,
                                    blank=True, null=True, related_name="category_created_by")
