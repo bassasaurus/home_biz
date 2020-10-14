@@ -24,6 +24,7 @@ class AccountsAutocomplete(autocomplete.Select2QuerySetView):
 
 
 class CategoriesAutocomplete(autocomplete.Select2QuerySetView):
+
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
         if not self.request.user.is_authenticated:
@@ -38,6 +39,7 @@ class CategoriesAutocomplete(autocomplete.Select2QuerySetView):
 
 
 class BusinessGroupsAutocomplete(autocomplete.Select2QuerySetView):
+
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
         if not self.request.user.is_authenticated:
@@ -128,6 +130,10 @@ class BusinessGroupsDetailView(LoginRequiredMixin, DetailView):
     model = BusinessGroups
     template_name = 'business_groups/business_groups_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['transactions'] = Transactions.objects.filter(business_groups=self.object)
+        return context
 
 class BusinessGroupsUpdateView(LoginRequiredMixin, UpdateView):
     model = BusinessGroups
@@ -168,6 +174,11 @@ class AccountsDetailView(LoginRequiredMixin, DetailView):
     model = Accounts
     template_name = 'accounts/accounts_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['transactions'] = Transactions.objects.filter(accounts=self.object)
+        return context
+
 
 class AccountsUpdateView(LoginRequiredMixin, UpdateView):
     model = Accounts
@@ -207,6 +218,11 @@ class CategoriesCreateView(LoginRequiredMixin, CreateView):
 class CategoriesDetailView(LoginRequiredMixin, DetailView):
     model = Categories
     template_name = 'categories/categories_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['transactions'] = Transactions.objects.filter(categories=self.object)
+        return context
 
 
 class CategoriesUpdateView(LoginRequiredMixin, UpdateView):

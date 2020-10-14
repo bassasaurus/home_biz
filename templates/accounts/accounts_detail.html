@@ -10,4 +10,9 @@ record number - {{ object.pk }}</p>
   <a href="{% url 'accounts_update' object.pk %}">Update</a>
   <a href="{% url 'accounts_delete' object.pk %}">Delete</a>
 </p>
+
+{% for transaction in transactions %}
+  {{ transaction.name }}
+{% endfor %}
+
 {% endblock %}
