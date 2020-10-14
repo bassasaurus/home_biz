@@ -12,7 +12,7 @@ record number - {{ object.pk }}</p>
 </p>
 
 {% for transaction in transactions %}
-  {{ transaction.name }}
+  <p>{{ transaction.name }} ${{ transaction.amount }}</p>
 {% endfor %}
 
 {% endblock %}
