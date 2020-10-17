@@ -11,8 +11,26 @@ record number - {{ object.pk }}</p>
   <a href="{% url 'accounts_delete' object.pk %}">Delete</a>
 </p>
 
-{% for transaction in transactions %}
-  <p>{{ transaction.name }} ${{ transaction.amount }}</p>
-{% endfor %}
+<table class="table">
+  <th>
+    <tr>
+      <td>Name</td>
+      <td>Amount</td>
+      <td>Date</td>
+    </tr>
+  </th>
+  {% for transaction in transactions %}
+  <tr>
+    <td>
+      {{ transaction.name }}
+    <td>
+      ${{ transaction.amount }}
+    </td>
+    <td>
+      {{ transaction.date }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 
 {% endblock %}

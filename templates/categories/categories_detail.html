@@ -2,7 +2,7 @@
 {% block content %}
 
 <p>Detail for {{ object }} <br>
-record number - {{ object.pk }}</p>
+  record number - {{ object.pk }}</p>
 <p>{{ object.comments }}</p>
 <p>Created by: {{ object.created_by }} at {{ object.created_timestamp }}
 <p>Updated by: {{ object.updated_by }} at {{ object.updated_timestamp }}
@@ -11,8 +11,26 @@ record number - {{ object.pk }}</p>
   <a href="{% url 'categories_delete' object.pk %}">Delete</a>
 </p>
 
-{% for transaction in transactions %}
-  <p>{{ transaction.name }} ${{ transaction.amount }}</p>
-{% endfor %}
+<table class="table">
+  <th>
+    <tr>
+      <td>Name</td>
+      <td>Amount</td>
+      <td>Date</td>
+    </tr>
+  </th>
+  {% for transaction in transactions %}
+  <tr>
+    <td>
+      {{ transaction.name }}
+    <td>
+      ${{ transaction.amount }}
+    </td>
+    <td>
+      {{ transaction.date }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 
 {% endblock %}
