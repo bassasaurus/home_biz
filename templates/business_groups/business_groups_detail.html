@@ -1,11 +1,7 @@
 {% extends 'common/base.html' %}
 {% block content %}
 
-<p>Detail for {{ object }} <br>
-record number - {{ object.pk }}</p>
-<p>{{ object.comments }}</p>
-<p>Created by: {{ object.created_by }} at {{ object.created_timestamp }}
-<p>Updated by: {{ object.updated_by }} at {{ object.updated_timestamp }}
+{% include 'detail_header.html' %}
 <p>
   <a href="{% url 'business_update' object.pk %}">Update</a>
   <a href="{% url 'business_delete' object.pk %}">Delete</a>
