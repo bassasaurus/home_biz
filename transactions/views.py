@@ -80,6 +80,10 @@ class TransactionsDetailView(LoginRequiredMixin, DetailView):
     model = Transactions
     template_name = 'transactions/transactions_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['transactions'] = Transactions.objects.filter(name=self.object)
+        return context
 
 class TransactionsUpdateView(LoginRequiredMixin, UpdateView):
     model = Transactions
