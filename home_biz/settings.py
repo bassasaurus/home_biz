@@ -49,7 +49,6 @@ USE_L10N = True
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
 
     'dal',
     'dal_select2',
