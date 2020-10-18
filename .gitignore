@@ -142,3 +142,5 @@ db.sqlite3
 
 Dockerfile
 docker-compose.yml
+
+.DS_Store
