@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'authentication',
     'profiles',
     'transactions',
+    'common',
 
     'django_extensions'
 ]
@@ -84,11 +85,11 @@ SESSION_COOKIE_SAMESTIE = 'None'
 ROOT_URLCONF = 'home_biz.urls'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '/home/blakepowell/static')
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static")
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'index'
